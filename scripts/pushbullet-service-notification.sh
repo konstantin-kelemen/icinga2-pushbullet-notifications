@@ -35,4 +35,4 @@ BODY="* Notification Type: $NOTIFICATIONTYPE
 ENCODEDBODY=`urlencode "$BODY"`
 
 #And push it!
-curl https://api.pushbullet.com/api/pushes -u $APIKEY: -d device_iden=$DEVID -d type=note -d title="Icinga: $NOTIFICATIONTYPE $HOSTALIAS ($HOSTADDRESS)/$SERVICEDESC is $HOSTSTATE" -d body="$ENCODEDBODY" -X POST
+curl https://api.pushbullet.com/api/pushes -u $APIKEY: -d device_iden=$DEVID -d type=note -d title="Icinga: $NOTIFICATIONTYPE $HOSTALIAS ($HOSTADDRESS)/$SERVICEDESC is $SERVICESTATE" -d body="$ENCODEDBODY" -X POST
