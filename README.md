@@ -10,7 +10,7 @@ Merge the contents of the config files in conf.d with those you have.
 
 Take a closer look at the notifications.conf, by default the notifications are sent to users in the "noc" group.
 
-In case you use Director plugin for Icinga Web 2 you should do the following steps this work:
+In case you use Director plugin for Icinga Web 2 you should do the following steps to make this work:
 
 Create a group:
 ![alt tag](http://i.imgur.com/Ln2WCa4.png)
