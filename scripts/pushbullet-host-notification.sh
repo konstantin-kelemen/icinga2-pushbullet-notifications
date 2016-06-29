@@ -5,21 +5,8 @@ arrUSERPAGER=(${USERPAGER//:/ })
 APIKEY=${arrUSERPAGER[0]}
 DEVID=${arrUSERPAGER[1]}
 
-#Here we have an urlencode function found on http://stackoverflow.com/a/10797966
-urlencode() {
-    local data
-    if [[ $# != 1 ]]; then
-        echo "Usage: $0 string-to-urlencode"
-        return 1
-    fi
-    data="$(curl -s -o /dev/null -w %{url_effective} --get --data-urlencode "$1" "")"
-    if [[ $? != 3 ]]; then
-        echo "Unexpected error" 1>&2
-        return 2
-    fi
-    echo "${data##/?}"
-    return 0
-}
+#The message title
+TITLE="Icinga: $NOTIFICATIONTYPE $HOSTALIAS ($HOSTADDRESS) is $HOSTSTATE"
 
 #The message body
 BODY="* Host: $HOSTALIAS
@@ -29,8 +16,5 @@ BODY="* Host: $HOSTALIAS
 * Additional Info: $HOSTOUTPUT
 * Comment: [$NOTIFICATIONAUTHORNAME] $NOTIFICATIONCOMMENT"
 
-#Here we encode the messaage body
-ENCODEDBODY=`urlencode "$BODY"`
-
-#And push it!
-curl https://api.pushbullet.com/api/pushes -u $APIKEY: -d device_iden=$DEVID -d type=note -d title="Icinga: $NOTIFICATIONTYPE $HOSTALIAS ($HOSTADDRESS) is $HOSTSTATE" -d body="$ENCODEDBODY" -X POST
+#Pushing it!
+curl https://api.pushbullet.com/api/pushes -u $APIKEY: -d device_iden=$DEVID -d type=note --data-urlencode "title=$TITLE" --data-urlencode "body=$BODY" -X POST
