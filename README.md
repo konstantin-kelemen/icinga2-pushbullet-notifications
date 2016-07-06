@@ -13,12 +13,12 @@ Take a closer look at the notifications.conf, by default the notifications are s
 In case you use Director plugin for Icinga Web 2 you should do the following steps to make this work:
 
 Create a group:
-![alt tag](http://i.imgur.com/Ln2WCa4.png)
+![Group settings](http://i.imgur.com/Ln2WCa4.png)
 
 Create a user template:
-![alt tag](http://i.imgur.com/QqbS8SP.png)
+![User template](http://i.imgur.com/QqbS8SP.png)
 
 Create a user and specify your Pushbullet API key and your device ID with a colon between them in the Pager field:
-![alt tag](http://i.imgur.com/XbZa0M0.png)
+![User settings](http://i.imgur.com/XbZa0M0.png)
 
 Delpoy your config and you're done!
